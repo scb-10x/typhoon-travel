@@ -5,19 +5,13 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Bars3Icon, XMarkIcon, LanguageIcon } from '@heroicons/react/24/outline';
-import { useLanguage, useTranslation } from '@/lib/LanguageContext';
+import { useLanguage } from '@/lib/LanguageContext';
 import T from '@/components/T';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
-  const { t } = useTranslation();
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'th' : 'en');
-    setLangDropdownOpen(false);
-  };
 
   return (
     <>

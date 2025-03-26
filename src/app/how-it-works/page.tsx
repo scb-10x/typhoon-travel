@@ -10,11 +10,9 @@ import {
   ChatBubbleLeftRightIcon,
   MapIcon
 } from '@heroicons/react/24/outline';
-import { useTranslation } from '@/lib/LanguageContext';
 import T from '@/components/T';
 
 export default function HowItWorksPage() {
-  const { t } = useTranslation();
   
   return (
     <main className="flex min-h-screen flex-col bg-white">
@@ -34,7 +32,7 @@ export default function HowItWorksPage() {
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
             <motion.h1 
-              className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600"
+              className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}

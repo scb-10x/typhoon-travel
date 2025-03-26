@@ -1,6 +1,6 @@
-# Typhoon Travel - AI Traval Buddy
+# Typhoon Travel - AI Travel Buddy
 
-A modern web application that generates personalized travel itineraries using AI. Built with Next.js, TypeScript, Tailwind CSS, and Typhoon AI.
+A modern web application that assist your on travel task. Built with Next.js, TypeScript, Tailwind CSS, and Typhoon AI.
 
 ## Features
 
