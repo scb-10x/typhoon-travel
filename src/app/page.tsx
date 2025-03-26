@@ -203,7 +203,10 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(combinedFormData),
+        body: JSON.stringify({
+          ...combinedFormData,
+          language: language === 'th' ? 'Thai' : 'English',
+        }),
       });
 
       if (!response.ok) {

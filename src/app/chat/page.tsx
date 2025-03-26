@@ -72,6 +72,7 @@ export default function ChatPage() {
             ...messages.map(msg => ({ role: msg.role, content: msg.content })),
             { role: userMessage.role, content: userMessage.content },
           ],
+          language: language === 'th' ? 'Thai' : 'English',
         }),
       });
 

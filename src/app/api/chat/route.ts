@@ -5,7 +5,7 @@ import { extractResultFromThinking } from '@/lib/utils';
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
+    const { messages, language } = await req.json();
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json(
@@ -18,12 +18,16 @@ export async function POST(req: Request) {
     const systemMessageIndex = messages.findIndex(msg => msg.role === 'system');
     const markdownInstructions = 'Use Markdown formatting in your responses. Utilize **bold** for emphasis, *italics* for locations, ## headings for sections, bullet points for lists, and `code` for specific details like hours or prices. Create tables when comparing options.';
     
+    // Use language passed from frontend, default to English if not provided
+    const userLanguage = language || 'English';
+    const languageInstruction = `Respond in ${userLanguage} language based on the user's language preference.`;
+    
     if (systemMessageIndex >= 0) {
-      messages[systemMessageIndex].content += ` ${markdownInstructions}`;
+      messages[systemMessageIndex].content += ` ${markdownInstructions} ${languageInstruction}`;
     } else {
       messages.unshift({
         role: 'system',
-        content: `You are a knowledgeable travel consultant. Provide helpful advice about destinations, accommodations, activities, and local cuisine. ${markdownInstructions}`
+        content: `You are a knowledgeable travel consultant. Provide helpful advice about destinations, accommodations, activities, and local cuisine. ${markdownInstructions} ${languageInstruction}`
       });
     }
 
