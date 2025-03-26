@@ -228,9 +228,9 @@ export default function Home() {
   };
 
   // Custom renderer components for markdown elements
-  const MarkdownComponents: Record<string, React.ComponentType<any>> = {
+  const MarkdownComponents: Record<string, React.ComponentType<React.PropsWithChildren<unknown>>> = {
     // Render h2 headings (usually day headers) as collapsible sections
-    h2: ({ node, children }) => {
+    h2: ({ children }) => {
       const headingText = children?.toString() || '';
       const dayId = headingText.replace(/\s+/g, '-').toLowerCase();
       const isExpanded = expandedDays[dayId] !== false; // Default to expanded
@@ -270,7 +270,7 @@ export default function Home() {
     },
     
     // Render h3 headings (activity titles) with icon and styling
-    h3: ({ node, children }) => (
+    h3: ({ children }) => (
       <h3 className="text-base font-semibold text-indigo-800 mt-4 mb-2 flex items-center">
         <SparklesIcon className="h-4 w-4 mr-1 text-indigo-500" />
         {children}
@@ -278,7 +278,7 @@ export default function Home() {
     ),
     
     // Render paragraphs with better spacing and text sizing
-    p: ({ node, children }) => {
+    p: ({ children }) => {
       const text = children?.toString() || '';
       
       // Handle special cases for time, cost indicators
@@ -315,13 +315,13 @@ export default function Home() {
     },
     
     // Render lists with better spacing and bullets
-    ul: ({ node, children }) => (
+    ul: ({ children }) => (
       <ul className="my-2 space-y-1 list-none pl-5">
         {children}
       </ul>
     ),
     
-    li: ({ node, children }) => (
+    li: ({ children }) => (
       <li className="text-sm text-gray-700 flex items-start">
         <span className="h-2 w-2 rounded-full bg-indigo-400 mt-1.5 mr-2 flex-shrink-0"></span>
         <span>{children}</span>
