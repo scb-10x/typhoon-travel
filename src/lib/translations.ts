@@ -544,6 +544,23 @@ const translations: Translations = {
     en: 'Optimized for conversational interactions, this model provides quick, relevant, and helpful responses to general travel questions. It\'s perfect for the chat interface where responsive and accurate information delivery is key.',
     th: 'ปรับให้เหมาะกับการโต้ตอบแบบสนทนา โมเดลนี้ให้การตอบสนองที่รวดเร็ว ตรงประเด็น และมีประโยชน์ต่อคำถามเกี่ยวกับการเดินทางทั่วไป เหมาะสำหรับอินเทอร์เฟซแชทที่การส่งมอบข้อมูลที่ตอบสนองและแม่นยำเป็นสิ่งสำคัญ',
   },
+  // AI Thinking section
+  showAIThinking: {
+    en: 'Show AI thinking',
+    th: 'แสดงกระบวนการคิดของ AI',
+  },
+  hideAIThinking: {
+    en: 'Hide AI thinking',
+    th: 'ซ่อนกระบวนการคิดของ AI',
+  },
+  thinking: {
+    en: 'Thinking',
+    th: 'กำลังคิด',
+  },
+  aiIsBrainstorming: {
+    en: 'AI is brainstorming your itinerary',
+    th: 'AI กำลังระดมความคิดสำหรับแผนการเดินทางของคุณ',
+  },
 };
 
 export default translations;

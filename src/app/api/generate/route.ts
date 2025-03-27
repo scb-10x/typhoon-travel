@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import { generateText } from "ai";
+import { streamText } from "ai";
 import { typhoon } from "@/app/lib/typhoon";
-import { extractResultFromThinking } from "@/lib/utils";
 
 function calculateDurationInDays(startDate: string, endDate: string): number {
   const start = new Date(startDate);
@@ -76,7 +75,7 @@ export async function POST(req: Request) {
     
     ${languageInstruction}`;
 
-    const { text } = await generateText({
+    const result = streamText({
       model: typhoon("typhoon-v2-r1-70b-preview"),
       system: systemPrompt,
       prompt: prompt,
@@ -84,8 +83,11 @@ export async function POST(req: Request) {
       maxTokens: 6000,
     });
 
-    return NextResponse.json({
-      itinerary: extractResultFromThinking(text.trim()),
+    // Return a streaming response using the built-in Vercel AI SDK method
+    return result.toTextStreamResponse({
+      headers: {
+        'Content-Type': 'text/event-stream',
+      },
     });
   } catch (error) {
     console.error("Error generating itinerary:", error);
