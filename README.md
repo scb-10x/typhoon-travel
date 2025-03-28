@@ -47,7 +47,7 @@ cp .env.example .env.local
 
 ```
 TYPHOON_BASE_URL=https://api.opentyphoon.ai/v1
-OPENAI_API_KEY=your_actual_api_key_here
+TYPHOON_API_KEY=your_actual_api_key_here
 ```
 
 4. Run the development server:
