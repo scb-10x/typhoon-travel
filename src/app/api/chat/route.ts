@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     }
 
     const { text } = await generateText({
-      model: typhoon('typhoon-v2-70b-instruct'),
+      model: typhoon('typhoon-v2.1-12b-instruct'),
       messages: messages,
       temperature: 0.7,
       maxTokens: 1000,

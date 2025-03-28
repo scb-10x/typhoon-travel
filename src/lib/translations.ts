@@ -429,8 +429,8 @@ const translations: Translations = {
     th: 'Typhoon Travel ใช้โมเดลภาษาขั้นสูงเพื่อเข้าใจความชอบในการเดินทางของคุณและสร้างคำแนะนำที่เหมาะกับความต้องการ AI ของเราประมวลผลข้อมูลของคุณผ่านกระบวนการที่ซับซ้อน โดยดึงข้อมูลสำคัญและสร้างเนื้อหาการเดินทางที่ปรับให้เหมาะกับคุณ',
   },
   aiTechnologyDesc2: {
-    en: 'We leverage the powerful typhoon-v2-70b-instruct and typhoon-v2-r1-70b-preview models, optimized specifically for travel planning and conversation. These models are trained on diverse travel data to provide accurate, helpful, and contextually relevant information.',
-    th: 'เราใช้โมเดล typhoon-v2-70b-instruct และ typhoon-v2-r1-70b-preview ที่ทรงพลัง ซึ่งได้รับการปรับแต่งโดยเฉพาะสำหรับการวางแผนการเดินทางและการสนทนา โมเดลเหล่านี้ได้รับการฝึกฝนด้วยข้อมูลการเดินทางที่หลากหลายเพื่อให้ข้อมูลที่ถูกต้อง มีประโยชน์ และเกี่ยวข้องกับบริบท',
+    en: 'We leverage the powerful typhoon-v2.1-12b-instruct and typhoon-v2-r1-70b-preview models, optimized specifically for travel planning and conversation. These models are trained on diverse travel data to provide accurate, helpful, and contextually relevant information.',
+    th: 'เราใช้โมเดล typhoon-v2.1-12b-instruct และ typhoon-v2-r1-70b-preview ที่ทรงพลัง ซึ่งได้รับการปรับแต่งโดยเฉพาะสำหรับการวางแผนการเดินทางและการสนทนา โมเดลเหล่านี้ได้รับการฝึกฝนด้วยข้อมูลการเดินทางที่หลากหลายเพื่อให้ข้อมูลที่ถูกต้อง มีประโยชน์ และเกี่ยวข้องกับบริบท',
   },
   howAIAlgorithmWorks: {
     en: 'How Our AI Algorithm Works',
@@ -457,8 +457,8 @@ const translations: Translations = {
     th: '3. การเลือกโมเดล AI และการสร้างเนื้อหา',
   },
   aiTextGenerationDesc: {
-    en: 'Our system selects the appropriate AI model based on task complexity. For complex planning tasks like itinerary generation, we use the powerful typhoon-v2-r1-70b reasoning model, while for general chat interactions, we utilize the typhoon-v2-70b-instruct model optimized for conversational responses.',
-    th: 'ระบบของเราเลือกโมเดล AI ที่เหมาะสมตามความซับซ้อนของงาน สำหรับงานวางแผนที่ซับซ้อนเช่นการสร้างแผนการเดินทาง เราใช้โมเดลการให้เหตุผล typhoon-v2-r1-70b ที่ทรงพลัง ในขณะที่สำหรับการโต้ตอบแชททั่วไป เราใช้โมเดล typhoon-v2-70b-instruct ที่ปรับให้เหมาะกับการตอบกลับในรูปแบบสนทนา',
+    en: 'Our system selects the appropriate AI model based on task complexity. For complex planning tasks like itinerary generation, we use the powerful typhoon-v2-r1-70b reasoning model, while for general chat interactions, we utilize the typhoon-v2.1-12b-instruct model optimized for conversational responses.',
+    th: 'ระบบของเราเลือกโมเดล AI ที่เหมาะสมตามความซับซ้อนของงาน สำหรับงานวางแผนที่ซับซ้อนเช่นการสร้างแผนการเดินทาง เราใช้โมเดลการให้เหตุผล typhoon-v2-r1-70b ที่ทรงพลัง ในขณะที่สำหรับการโต้ตอบแชททั่วไป เราใช้โมเดล typhoon-v2.1-12b-instruct ที่ปรับให้เหมาะกับการตอบกลับในรูปแบบสนทนา',
   },
   modelSelection: {
     en: 'Model Selection',
@@ -537,8 +537,8 @@ const translations: Translations = {
     th: 'โมเดลที่ทรงพลังที่สุดของเรา ที่ปรับให้เหมาะกับงานวางแผนที่ซับซ้อนซึ่งต้องการความคิดและการให้เหตุผลที่มีโครงสร้าง โมเดลนี้เก่งในการสร้างแผนการเดินทางหลายวันที่มีรายละเอียด โดยพิจารณาปัจจัยหลายอย่างเช่น เวลา สถานที่ และความชอบพร้อมกัน',
   },
   instructModelTitle: {
-    en: 'Instruct Model (typhoon-v2-70b-instruct)',
-    th: 'โมเดลทั่วไป(typhoon-v2-70b-instruct)',
+    en: 'Instruct Model (typhoon-v2.1-12b-instruct)',
+    th: 'โมเดลทั่วไป(typhoon-v2.1-12b-instruct)',
   },
   instructModelDesc: {
     en: 'Optimized for conversational interactions, this model provides quick, relevant, and helpful responses to general travel questions. It\'s perfect for the chat interface where responsive and accurate information delivery is key.',

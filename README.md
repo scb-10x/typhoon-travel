@@ -7,7 +7,7 @@ A modern web application that assist your on travel task. Built with Next.js, Ty
 - **AI-Powered Itinerary Generator**: Create personalized travel itineraries based on destination, dates, interests, and budget
 - **Travel Consultant**: Chat with our AI travel expert for personalized advice and recommendations
 - **Multi-language Support**: Available in English and Thai
-- **Typhoon AI Integration**: Leverages powerful typhoon-v2-70b-instruct and typhoon-v2-r1-70b-preview models
+- **Typhoon AI Integration**: Leverages powerful typhoon-v2.1-12b-instruct and typhoon-v2-r1-70b-preview models
 - **Interactive UI**: Beautiful, responsive UI with animations and modern design
 - **Export Options**: Download and print your generated itineraries
 - **Smart Destination Suggestions**: Auto-complete destination search with popular location suggestions
