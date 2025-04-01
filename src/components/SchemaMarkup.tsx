@@ -9,7 +9,6 @@ export default function SchemaMarkup() {
 
     // Create base URL from the domain
     const baseUrl = 'https://opentyphoon.ai';
-    const currentUrl = `${baseUrl}${pathname}`;
 
     // Basic website schema
     const websiteSchema = {
