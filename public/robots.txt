@@ -1,0 +1,7 @@
+# Typhoon Travel Demo Site Robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Define sitemap location
+Sitemap: https://opentyphoon.ai/sitemap.xml 
