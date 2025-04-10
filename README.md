@@ -1,19 +1,24 @@
-# Typhoon Travel - AI Travel Buddy
+# Typhoon Travel
 
-A modern web application that assist your on travel task. Built with Next.js, TypeScript, Tailwind CSS, and Typhoon AI.
+## Introduction
 
-## Features
+[Typhoon Travel](https://travel.apps.opentyphoon.ai) is an AI-powered travel assistant that helps you plan your trips, create personalized itineraries, and get expert travel advice. The application streamlines travel planning by generating custom itineraries based on your preferences and providing conversational travel consultation.
 
-- **AI-Powered Itinerary Generator**: Create personalized travel itineraries based on destination, dates, interests, and budget
-- **Travel Consultant**: Chat with our AI travel expert for personalized advice and recommendations
-- **Multi-language Support**: Available in English and Thai
-- **Typhoon AI Integration**: Leverages powerful typhoon-v2.1-12b-instruct and typhoon-v2-r1-70b-preview models
-- **Interactive UI**: Beautiful, responsive UI with animations and modern design
-- **Export Options**: Download and print your generated itineraries
-- **Smart Destination Suggestions**: Auto-complete destination search with popular location suggestions
-- **Interest Selection**: Preset interest categories to help tailor your itinerary
+This project is part of [Typhoon Application Week](https://apps.opentyphoon.ai), showcasing the capabilities of the [Typhoon platform](https://opentyphoon.ai). Please note that this application is not maintained for production use and is not production-ready. Use at your own risk.
 
-## Getting Started
+## Highlighted Features + Typhoon Integration
+
+- **AI-Powered Itinerary Generator**: Typhoon creates personalized travel plans based on destination, dates, interests, and budget, utilizing its knowledge of global destinations and planning capabilities.
+
+- **Travel Consultant**: Chat with an AI travel expert powered by Typhoon's conversational abilities to get personalized advice and recommendations about destinations, accommodations, and local experiences.
+
+- **Multi-language Support**: Typhoon's multilingual capabilities enable the application to provide travel assistance in both English and Thai.
+
+- **Smart Destination Suggestions**: Leverages Typhoon's knowledge base to offer intelligent auto-complete for destinations with popular location suggestions.
+
+- **Interest-Based Recommendations**: Typhoon analyzes your selected interests to tailor attractions, activities, and experiences in your generated itineraries.
+
+## Getting Started (Local Development)
 
 ### Prerequisites
 
@@ -58,38 +63,14 @@ npm run dev
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-## Usage
-
-### Itinerary Generator
-
-1. Enter your destination, start date, end date, interests, and budget
-2. Click "Generate Itinerary"
-3. View your personalized travel itinerary
-4. Print or download your itinerary for offline reference
-
-### Travel Consultant
-
-1. Navigate to the Travel Consultant page
-2. Ask questions about destinations, accommodations, local cuisine, or travel tips
-3. Receive personalized advice from our AI travel expert
-4. Try suggested example questions or ask your own
-
-## Technologies Used
-
-- Next.js 15
-- TypeScript
-- Tailwind CSS 4
-- Framer Motion for animations
-- Headless UI for accessible components
-- React Markdown for content formatting
-- Typhoon AI for intelligent travel recommendations
-
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the LICENSE file for details.
 
-## Acknowledgments
+## Connect With Us
 
-- [Typhoon AI](https://opentyphoon.ai/) for providing the AI models
-- [Next.js](https://nextjs.org/) for the React framework
-- [Tailwind CSS](https://tailwindcss.com/) for styling
+- Website: [Typhoon](https://opentyphoon.ai)
+- GitHub: [SCB 10X](https://github.com/scb-10x)
+- Hugging Face: [SCB 10X](https://huggingface.co/scb10x)
+- Discord: [Join our community](https://discord.com/invite/9F6nrFXyNt)
+- X (formerly Twitter): [Typhoon](https://x.com/opentyphoon)
