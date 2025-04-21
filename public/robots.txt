@@ -4,4 +4,4 @@ Allow: /
 Disallow: /api/
 
 # Define sitemap location
-Sitemap: https://opentyphoon.ai/sitemap.xml 
+Sitemap: https://travel.apps.opentyphoon.ai/sitemap.xml 

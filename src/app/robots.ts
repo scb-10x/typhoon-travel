@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/api/'], // Prevent crawling of API routes
         },
-        sitemap: 'https://opentyphoon.ai/sitemap.xml',
+        sitemap: 'https://travel.apps.opentyphoon.ai/sitemap.xml',
     };
 } 
