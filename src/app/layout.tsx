@@ -19,28 +19,28 @@ export const metadata: Metadata = {
   description: "Experience the capabilities of Typhoon AI in this demo travel planner that creates personalized travel itineraries with intelligent recommendations based on your preferences.",
   keywords: "Typhoon AI, AI travel planner, travel itinerary generator, personalized travel recommendations, AI demo, OpenTyphoon",
   applicationName: "Typhoon Travel Demo",
-  authors: [{ name: "OpenTyphoon Team", url: "https://opentyphoon.ai" }],
-  creator: "OpenTyphoon",
-  publisher: "OpenTyphoon",
+  authors: [{ name: "Typhoon Team", url: "https://opentyphoon.ai" }],
+  creator: "Typhoon",
+  publisher: "Typhoon",
   formatDetection: {
     email: false,
     telephone: false,
     address: false,
   },
-  metadataBase: new URL("https://opentyphoon.ai"),
+  metadataBase: new URL("https://travel.apps.opentyphoon.ai"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Typhoon Travel - AI-Powered Travel Itinerary Planner Demo",
     description: "Experience the capabilities of Typhoon AI in this demo travel planner that creates personalized travel itineraries with intelligent recommendations based on your preferences.",
-    url: "https://opentyphoon.ai",
+    url: "https://travel.apps.opentyphoon.ai",
     siteName: "Typhoon Travel Demo",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg", // Replace with actual image path
+        url: "/images/og.jpg", // Replace with actual image path
         width: 1200,
         height: 630,
         alt: "Typhoon Travel AI Demo",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Typhoon Travel - AI-Powered Travel Itinerary Planner Demo",
     description: "Experience the capabilities of Typhoon AI in this demo travel planner that creates personalized travel itineraries with intelligent recommendations based on your preferences.",
     creator: "@opentyphoon",
-    images: ["/twitter-image.jpg"], // Replace with actual image path
+    images: ["/images/og.jpg"], // Replace with actual image path
   },
   robots: {
     index: true,
