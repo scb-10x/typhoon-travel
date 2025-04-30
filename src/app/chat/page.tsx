@@ -54,7 +54,7 @@ export default function ChatPage() {
     setShowSuggestions(false);
 
     try {
-      const systemPrompt = language === 'th' 
+      const systemPrompt = language === 'th'
         ? 'คุณเป็นที่ปรึกษาการท่องเที่ยวที่มีความรู้ ให้คำแนะนำที่เป็นประโยชน์เกี่ยวกับจุดหมายปลายทาง ที่พัก กิจกรรม และอาหารท้องถิ่น คำตอบของคุณควรกระชับและนำไปใช้ได้จริง กรุณาตอบเป็นภาษาไทย'
         : 'You are a knowledgeable travel consultant. Provide helpful advice about destinations, accommodations, activities, and local cuisine. Be concise and practical in your responses.';
 
@@ -116,7 +116,7 @@ export default function ChatPage() {
       <div className="flex-1 max-w-7xl w-full mx-auto px-4 pt-24 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
-          <motion.div 
+          <motion.div
             className="hidden lg:block lg:col-span-1"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -127,7 +127,7 @@ export default function ChatPage() {
               <p className="text-sm text-gray-600 mb-6">
                 <T translationKey="askMeAnything" />
               </p>
-              
+
               <div className="space-y-4">
                 <button
                   onClick={handleReset}
@@ -163,7 +163,7 @@ export default function ChatPage() {
           </motion.div>
 
           {/* Main chat area */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -181,7 +181,7 @@ export default function ChatPage() {
                   </button>
                 </div>
               </div>
-              
+
               <div className="flex-1 overflow-y-auto p-4 space-y-6">
                 {messages.length === 0 && (
                   <div className="flex flex-col items-center justify-center h-full space-y-6 px-4">
@@ -211,7 +211,7 @@ export default function ChatPage() {
                     )}
                   </div>
                 )}
-                
+
                 {messages.map((message, index) => (
                   <div
                     key={index}
@@ -232,11 +232,10 @@ export default function ChatPage() {
                         )}
                       </div>
                       <div
-                        className={`rounded-xl px-4 py-3 ${
-                          message.role === 'user'
+                        className={`rounded-xl px-4 py-3 ${message.role === 'user'
                             ? 'bg-indigo-600 text-white rounded-tr-none'
                             : 'bg-gray-100 text-gray-900 rounded-tl-none'
-                        }`}
+                          }`}
                       >
                         {message.role === 'user' ? (
                           <p className="whitespace-pre-wrap text-sm">{message.content}</p>
@@ -262,7 +261,7 @@ export default function ChatPage() {
                     </div>
                   </div>
                 ))}
-                
+
                 {isLoading && (
                   <div className="flex justify-start">
                     <div className="flex items-start max-w-[85%]">
