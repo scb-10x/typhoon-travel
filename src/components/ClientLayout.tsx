@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/lib/LanguageContext';
 import { useEffect } from 'react';
+import SchemaMarkup from './SchemaMarkup';
 
 export default function ClientLayout({
   children,
@@ -15,5 +16,10 @@ export default function ClientLayout({
     document.documentElement.lang = language;
   }, [language]);
 
-  return <>{children}</>;
+  return (
+    <>
+      <SchemaMarkup />
+      {children}
+    </>
+  );
 } 

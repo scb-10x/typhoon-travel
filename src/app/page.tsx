@@ -22,6 +22,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useTranslation } from "@/lib/LanguageContext";
 import T from "@/components/T";
+import Image from "next/image";
 
 // Popular destinations for autocomplete - language specific
 const getPopularDestinations = (language: string) => {
@@ -223,11 +224,10 @@ export default function Home() {
       // Combine interests and additional interests if any
       const combinedFormData = { ...formData };
       if (formData.additionalInterests) {
-        combinedFormData.interests = `${formData.interests}${
-          formData.additionalInterests
-            ? ", " + formData.additionalInterests
-            : ""
-        }`;
+        combinedFormData.interests = `${formData.interests}${formData.additionalInterests
+          ? ", " + formData.additionalInterests
+          : ""
+          }`;
       }
 
       const response = await fetch("/api/generate", {
@@ -251,15 +251,15 @@ export default function Home() {
 
       if (!reader) {
         throw new Error("Response body is not readable");
-      }      
+      }
 
-      
+
       // Inactivity detection
       let lastActivityTimestamp = Date.now();
       const inactivityInterval = setInterval(() => {
         const now = Date.now();
         const timeSinceLastActivity = now - lastActivityTimestamp;
-        
+
         // If no activity for 10 seconds after we've received some data, assume stream is done
         if (timeSinceLastActivity > 10000 && responseRef.current.length > 0) {
           console.log("Inactivity timeout reached - ending stream");
@@ -267,7 +267,7 @@ export default function Home() {
           reader.cancel().catch(e => console.log("Error cancelling inactive reader:", e));
         }
       }, 2000);
-      
+
       setShowThinking(false);
       try {
         while (true) {
@@ -279,7 +279,7 @@ export default function Home() {
 
             // Update last activity timestamp whenever we receive data
             lastActivityTimestamp = Date.now();
-            
+
             const chunk = decoder.decode(value, { stream: true });
 
             // Add the new chunk to the accumulated response
@@ -310,14 +310,14 @@ export default function Home() {
       } finally {
         // Clear all timers and ensure loading state is set to false
         clearInterval(inactivityInterval);
-        
+
         // Attempt to cancel the reader if needed
         try {
           reader.cancel();
         } catch (e) {
           console.log("Error cancelling reader:", e);
         }
-        
+
         setLoading(false);
       }
     } catch (error) {
@@ -345,10 +345,11 @@ export default function Home() {
       const isExpanded = expandedDays[dayId] !== false; // Default to expanded
 
       return (
-        <div className="mb-4 border-b border-gray-100 pb-2">
+        <div className="mb-4 border-b border-gray-100 pb-2" id={`day-section-${dayId}`}>
           <button
             onClick={() => toggleDayExpansion(dayId)}
             className="flex w-full items-center justify-between bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-lg group"
+            id={`day-toggle-${dayId}`}
           >
             <h2 className="text-lg font-bold text-gray-900 flex items-center">
               <CalendarIcon className="h-5 w-5 mr-2 text-indigo-600" />
@@ -370,6 +371,7 @@ export default function Home() {
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2 }}
                 className="mt-2 pl-4 border-l-2 border-indigo-100"
+                id={`day-content-${dayId}`}
               >
                 {/* Content will be nested inside */}
               </motion.div>
@@ -381,7 +383,7 @@ export default function Home() {
 
     // Render h3 headings (activity titles) with icon and styling
     h3: ({ children }) => (
-      <h3 className="text-base font-semibold text-indigo-800 mt-4 mb-2 flex items-center">
+      <h3 className="text-base font-semibold text-indigo-800 mt-4 mb-2 flex items-center" id={`activity-${(children?.toString() || "").replace(/\s+/g, "-").toLowerCase()}`}>
         <SparklesIcon className="h-4 w-4 mr-1 text-indigo-500" />
         {children}
       </h3>
@@ -444,11 +446,11 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-white">
+    <main className="flex min-h-screen flex-col bg-white" id="main-content">
       <Navbar />
 
       {/* Hero section */}
-      <div className="relative isolate px-6 pt-24 pb-12 lg:px-8 sm:pt-32 sm:pb-16">
+      <div className="relative isolate px-6 pt-24 pb-12 lg:px-8 sm:pt-32 sm:pb-16" id="hero-section">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
@@ -468,6 +470,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            id="main-heading"
           >
             <T translationKey="createItinerary" />
           </motion.h1>
@@ -476,6 +479,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            id="main-subheading"
           >
             {t("tellUsWhere")}
           </motion.p>
@@ -483,7 +487,7 @@ export default function Home() {
       </div>
 
       {/* Main content area */}
-      <div className="mx-auto w-full max-w-6xl px-6 pb-24">
+      <div className="mx-auto w-full max-w-6xl px-6 pb-24" id="form-section">
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-12 border border-gray-100">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8">
@@ -492,6 +496,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
+                id="form-heading"
               >
                 {t("whatsYourNextDestination")}
               </motion.h3>
@@ -501,6 +506,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
+                id="itinerary-form"
               >
                 <div>
                   <label
@@ -532,7 +538,7 @@ export default function Home() {
                     />
                     {/* Autocomplete dropdown */}
                     {showDestinations && (
-                      <div className="absolute z-10 mt-1 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto">
+                      <div className="absolute z-10 mt-1 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto" id="destination-dropdown">
                         <ul className="py-1">
                           {filteredDestinations.length > 0 ? (
                             filteredDestinations.map((destination, index) => (
@@ -542,6 +548,7 @@ export default function Home() {
                                   handleDestinationSelect(destination)
                                 }
                                 className="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center text-sm text-gray-700"
+                                id={`destination-option-${index}`}
                               >
                                 <MapPinIcon className="h-4 w-4 text-gray-400 mr-2" />
                                 {destination}
@@ -558,7 +565,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4" id="date-container">
                   <div>
                     <label
                       htmlFor="startDate"
@@ -612,7 +619,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div>
+                <div id="interests-section">
                   <label
                     htmlFor="interests"
                     className="block text-sm font-medium text-gray-700 mb-1"
@@ -626,19 +633,19 @@ export default function Home() {
                     required
                     value={formData.interests}
                   />
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" id="interests-grid">
                     {INTEREST_PRESETS.map((interest) => (
                       <div
                         key={interest.id}
                         onClick={() => handleInterestToggle(interest.id)}
                         className={`
                           rounded-lg px-3 py-2 cursor-pointer text-sm flex items-center gap-2
-                          ${
-                            selectedInterests.includes(interest.id)
-                              ? "bg-indigo-100 border-indigo-200 text-indigo-800 border"
-                              : "bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
+                          ${selectedInterests.includes(interest.id)
+                            ? "bg-indigo-100 border-indigo-200 text-indigo-800 border"
+                            : "bg-gray-50 border border-gray-200 text-gray-700 hover:bg-gray-100"
                           }
                         `}
+                        id={`interest-option-${interest.id}`}
                       >
                         <span className="flex-1">
                           <T translationKey={interest.label} />
@@ -696,9 +703,9 @@ export default function Home() {
                     onChange={handleChange}
                     className="mt-1 block w-full pl-3 pr-10 py-3 border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
-                    <option value="budget">{t("low")}</option>
-                    <option value="medium">{t("medium")}</option>
-                    <option value="luxury">{t("high")}</option>
+                    <option value="budget" id="budget-option-low">{t("low")}</option>
+                    <option value="medium" id="budget-option-medium">{t("medium")}</option>
+                    <option value="luxury" id="budget-option-high">{t("high")}</option>
                   </select>
                 </div>
 
@@ -709,6 +716,7 @@ export default function Home() {
                     type="submit"
                     disabled={loading || selectedInterests.length === 0}
                     className="w-full inline-flex justify-center items-center px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                    id="generate-button"
                   >
                     {loading ? (
                       <>
@@ -745,18 +753,19 @@ export default function Home() {
             <div className="bg-gray-50 p-8 flex items-center justify-center">
               <div className="w-full">
                 {responseContent || loading ? (
-                  <div className="text-left max-w-full">
+                  <div className="text-left max-w-full" id="results-container">
                     <div className="flex justify-between items-center mb-4">
-                      <h3 className="text-xl font-semibold text-gray-900">
+                      <h3 className="text-xl font-semibold text-gray-900" id="results-heading">
                         <T translationKey="yourItinerary" />
                       </h3>
-                      <div className="flex space-x-2">
+                      <div className="flex space-x-2" id="results-actions">
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => window.print()}
                           className="flex items-center justify-center rounded-md bg-gray-200 p-2 text-gray-700 hover:bg-gray-300"
                           title={t("printItinerary")}
+                          id="print-button"
                         >
                           <PrinterIcon className="h-5 w-5" />
                         </motion.button>
@@ -779,6 +788,7 @@ export default function Home() {
                           }}
                           className="flex items-center justify-center rounded-md bg-gray-200 p-2 text-gray-700 hover:bg-gray-300"
                           title={t("downloadItinerary")}
+                          id="download-button"
                         >
                           <ArrowDownTrayIcon className="h-5 w-5" />
                         </motion.button>
@@ -789,9 +799,8 @@ export default function Home() {
                             if (navigator.share) {
                               navigator
                                 .share({
-                                  title: `${t("travelItineraryFor")} ${
-                                    formData.destination
-                                  }`,
+                                  title: `${t("travelItineraryFor")} ${formData.destination
+                                    }`,
                                   text: responseContent || "",
                                 })
                                 .catch(console.error);
@@ -804,6 +813,7 @@ export default function Home() {
                           }}
                           className="flex items-center justify-center rounded-md bg-gray-200 p-2 text-gray-700 hover:bg-gray-300"
                           title={t("shareItinerary")}
+                          id="share-button"
                         >
                           <ShareIcon className="h-5 w-5" />
                         </motion.button>
@@ -812,9 +822,10 @@ export default function Home() {
                     <div
                       className="bg-white border border-gray-200 rounded-lg shadow-sm max-h-[500px] overflow-y-auto"
                       ref={resultsContainerRef}
+                      id="itinerary-content"
                     >
                       <div className="p-5">
-                        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 -mx-5 mt-[-1.25rem] mb-4 p-4 text-white rounded-t-lg shadow-sm">
+                        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 -mx-5 mt-[-1.25rem] mb-4 p-4 text-white rounded-t-lg shadow-sm" id="itinerary-header">
                           <h1 className="text-xl font-bold">
                             {formData.destination} {t("itinerary")}
                           </h1>
@@ -830,9 +841,9 @@ export default function Home() {
                             )}
                           </p>
                         </div>
-                        <div className="prose prose-indigo max-w-none">
+                        <div className="prose prose-indigo max-w-none" id="itinerary-body">
                           {loading && (
-                            <div className="flex items-center mb-3 text-sm text-gray-600">
+                            <div className="flex items-center mb-3 text-sm text-gray-600" id="loading-indicator">
                               <div className="mr-2 flex space-x-1">
                                 <div className="w-2 h-2 bg-indigo-600 rounded-full animate-bounce"></div>
                                 <div className="w-2 h-2 bg-indigo-600 rounded-full animate-bounce delay-100"></div>
@@ -848,6 +859,7 @@ export default function Home() {
                               <button
                                 onClick={() => setShowThinking(!showThinking)}
                                 className="text-xs px-3 py-1 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 flex items-center space-x-1"
+                                id="thinking-toggle"
                               >
                                 {showThinking ? (
                                   <>
@@ -899,13 +911,16 @@ export default function Home() {
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center">
-                    <img
+                  <div className="text-center" id="placeholder-section">
+                    <Image
                       src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1035&q=80"
                       alt={t("travel")}
                       className="w-full h-64 object-cover rounded-lg mb-4"
+                      id="placeholder-image"
+                      width={1035}
+                      height={800}
                     />
-                    <p className="text-gray-600">{t("fillInTheForm")}</p>
+                    <p className="text-gray-600" id="placeholder-text">{t("fillInTheForm")}</p>
                   </div>
                 )}
               </div>
@@ -914,18 +929,19 @@ export default function Home() {
         </div>
 
         {/* Features section */}
-        <div className="py-12">
+        <div className="py-12" id="features-section">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600" id="features-heading">
               <T translationKey="howItWorks" />
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6" id="features-grid">
             <motion.div
               className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm"
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              id="feature-destination"
             >
               <div className="h-12 w-12 rounded-lg bg-indigo-600/10 text-indigo-600 flex items-center justify-center mb-4">
                 <MapPinIcon className="h-6 w-6" />
@@ -940,6 +956,7 @@ export default function Home() {
               className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm"
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              id="feature-interests"
             >
               <div className="h-12 w-12 rounded-lg bg-indigo-600/10 text-indigo-600 flex items-center justify-center mb-4">
                 <SparklesIcon className="h-6 w-6" />
@@ -954,6 +971,7 @@ export default function Home() {
               className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm"
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              id="feature-itinerary"
             >
               <div className="h-12 w-12 rounded-lg bg-indigo-600/10 text-indigo-600 flex items-center justify-center mb-4">
                 <CalendarIcon className="h-6 w-6" />
@@ -967,10 +985,10 @@ export default function Home() {
         </div>
 
         {/* Chat option section */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white" id="chat-cta-section">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold mb-4">
+            <div className="flex-1" id="chat-cta-text">
+              <h2 className="text-2xl font-bold mb-4" id="chat-cta-heading">
                 <T translationKey="needPersonalizedTravelAdvice" />
               </h2>
               <p className="mb-6">{t("chatWithOurAI")}</p>
@@ -979,22 +997,23 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 href="/chat"
                 className="inline-flex items-center px-5 py-2.5 rounded-lg bg-white text-indigo-600 font-medium shadow-sm hover:bg-indigo-50"
+                id="chat-now-button"
               >
                 <T translationKey="chatNow" />
               </motion.a>
             </div>
-            <div className="flex-1 flex justify-center">
-              <div className="bg-indigo-500/30 p-4 rounded-lg w-full max-w-xs">
+            <div className="flex-1 flex justify-center" id="chat-example-container">
+              <div className="bg-indigo-500/30 p-4 rounded-lg w-full max-w-xs" id="chat-examples">
                 <div className="text-sm font-medium mb-3">
                   <T translationKey="chatExample" />:
                 </div>
-                <div className="bg-white/10 p-3 rounded-lg text-sm mb-2">
+                <div className="bg-white/10 p-3 rounded-lg text-sm mb-2" id="chat-example-1">
                   "{t("whatShouldIPack")}"
                 </div>
-                <div className="bg-white/10 p-3 rounded-lg text-sm mb-2">
+                <div className="bg-white/10 p-3 rounded-lg text-sm mb-2" id="chat-example-2">
                   "{t("isThreeDaysEnough")}"
                 </div>
-                <div className="bg-white/10 p-3 rounded-lg text-sm">
+                <div className="bg-white/10 p-3 rounded-lg text-sm" id="chat-example-3">
                   "{t("bestRestaurants")}"
                 </div>
               </div>
