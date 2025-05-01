@@ -30,6 +30,7 @@ export default function Navbar() {
               <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 text-transparent bg-clip-text">
                 Typhoon Travel
               </h1>
+              <span className="ml-2 px-2 py-1 text-xs font-bold text-amber-700 bg-amber-100 rounded-md">DEMO</span>
             </Link>
           </div>
 
@@ -122,6 +123,7 @@ export default function Navbar() {
                 <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 text-transparent bg-clip-text">
                   Typhoon Travel
                 </h1>
+                <span className="ml-2 px-2 py-1 text-xs font-bold text-amber-700 bg-amber-100 rounded-md">DEMO</span>
               </Link>
               <button
                 type="button"
