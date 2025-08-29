@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     ${languageInstruction}`;
 
     const result = streamText({
-      model: typhoon("typhoon-v2-r1-70b-preview"),
+      model: typhoon(process.env.TYPHOON_MODEL || 'typhoon-v2.1-12b-instruct'),
       system: systemPrompt,
       prompt: prompt,
       temperature: 0.7,
