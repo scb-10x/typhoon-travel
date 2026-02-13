@@ -1,5 +1,9 @@
 # Typhoon Travel
 
+**This repository is archived and released as-is. If you’re interested in this work, please contact us.**
+
+---
+
 ## Introduction
 
 [Typhoon Travel](https://travel.apps.opentyphoon.ai) is an AI-powered travel assistant that helps you plan your trips, create personalized itineraries, and get expert travel advice. The application streamlines travel planning by generating custom itineraries based on your preferences and providing conversational travel consultation.
